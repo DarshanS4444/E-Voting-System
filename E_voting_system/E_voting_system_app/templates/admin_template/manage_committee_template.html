@@ -1,0 +1,68 @@
+{% extends 'admin_template/base_template.html' %}
+{% block page_title %}
+Manage Committee Members
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Member Details</h3>
+                <a href="/add_committee" class="btn btn-primary float-right">Add Committee members</a>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>ECM ID</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Username</th>
+                      <th>Email</th>
+                      <th>Gender</th>
+                      <th>Date Of Birth</th>
+                      <th>Qualification</th>
+                      <th>Blood Group</th>
+                      <th>Profile Picture</th>
+                      <th>Phone Number</th>
+                      <th>Address</th>
+
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for committee in committees %}
+                    <tr>
+                      <td>{{ committee.committee_number }}</td>
+                      <td>{{ committee.admin.first_name }}</td>
+                      <td>{{ committee.admin.last_name }}</td>
+                      <td>{{ committee.admin.username }}</td>
+                      <td>{{ committee.admin.email }}</td>
+                      <td>{{ committee.gender }}</td>
+                      <td>{{ committee.dob }}</td>
+                      <td>{{ committee.qualification }}</td>
+                      <td>{{ committee.blood_group }}</td>
+                      <td><img src="{{ committee.profile_pic }}" style="width:100px;"/></td>
+                      <td>{{ committee.ph_no }}</td>
+                      <td>{{ committee.address }}</td>
+
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+
+      </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}

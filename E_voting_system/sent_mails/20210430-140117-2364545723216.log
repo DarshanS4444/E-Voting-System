@@ -1,0 +1,22 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Password Reset
+From: E Voting System <a71518810@gmail.com>
+To: darshandas53@gmail.com
+Date: Fri, 30 Apr 2021 08:31:17 -0000
+Message-ID: <161977147770.2524.5976668160728660686@MSI>
+
+
+To initiate the password reset process for your darshan User Account
+click the link below:
+
+http://127.0.0.1:8000/accounts/reset/OQ/alx8a5-1172834ed9864817a28e9f003c3c2c91/
+
+If clicking the link above doesn't work, please copy and paste the URL in a new browser
+window instead.
+
+Thank you,
+E-Voting System
+
+-------------------------------------------------------------------------------

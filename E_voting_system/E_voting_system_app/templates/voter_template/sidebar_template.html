@@ -1,0 +1,47 @@
+{% load static %}
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <div class="brand-link">
+      <div class="brand-text font-weight-light">Welcome {{ user.first_name }}!</div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+
+        <div class="info">
+          <a href="{% url 'voter_profile' %}" class="d-block"><!--{{ user.username }}'s Profile -->My Profile</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            {% url 'voter_home' as voter_home %}
+            <a href="{{ voter_home }}" class="nav-link {% if request.path == voter_home %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Home
+              </p>
+            </a>
+          </li>
+
+        <li class="nav-item">
+            {% url 'voting_panel' as voting_panel %}
+            <a href="{{ voting_panel }}" class="nav-link {% if request.path == voting_panel %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Voting Panel
+              </p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

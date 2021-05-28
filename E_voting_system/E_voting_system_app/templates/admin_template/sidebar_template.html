@@ -1,0 +1,72 @@
+{% load static %}
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+<div class="brand-link">
+      <div class="brand-text font-weight-light">Welcome {{ user.first_name }}!</div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="info">
+          <a href="{% url 'admin_profile' %}" class="d-block">My Profile</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            {% url 'admin_home' as admin_home %}
+            <a href="{{ admin_home }}" class="nav-link {% if request.path == admin_home %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Home
+              </p>
+            </a>
+          </li>
+
+
+           <li class="nav-item">
+              {% url 'manage_committee' as manage_committee %}
+               {% url 'add_committee' as add_committee %}
+
+            <a href="{% url 'manage_committee' %}" class="nav-link {% if request.path == manage_committee %} active {% endif %}  {% if request.path == add_committee %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Manage Committee members
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+              {% url 'manage_voter' as manage_voter %}
+              {% url 'add_voter' as add_voter %}
+            <a href="{% url 'manage_voter' %}" class="nav-link   {% if request.path == manage_voter %} active {% endif %}    {% if request.path == add_voter %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Manage Voters
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            {% url 'manage_candidate' as manage_candidate %}
+
+               {% url 'add_candidate' as add_candidate %}
+            <a href="{% url 'manage_candidate' %}" class="nav-link {% if request.path == manage_candidate %} active {% endif %}  {% if request.path == add_candidate %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Manage Candidates
+              </p>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+      -->
+    </div>
+  </aside>

@@ -1,0 +1,64 @@
+{% extends 'admin_template/base_template.html' %}
+{% block page_title %}
+Manage Candidates
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Candidate Details</h3>
+                  <a href="/add_candidate" class="btn btn-primary float-right">Add Candidate</a>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>Candidate ID</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>User Name</th>
+                      <th>Email</th>
+                      <th>Gender</th>
+                      <th>Date Of Birth</th>
+                      <th>Blood Group</th>
+                      <th>Phone Number</th>
+                      <th>Address</th>
+                      <th>Profile Pic</th>
+
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for candidate in candidates %}
+                  <tr>
+                      <td>{{ candidate.candidate_number }}</td>
+                      <td>{{ candidate.first_name }}</td>
+                      <td>{{ candidate.last_name }}</td>
+                      <td>{{ candidate.username }}</td>
+                      <td>{{ candidate.email }}</td>
+                      <td>{{ candidate.gender }}</td>
+                      <td>{{ candidate.dob }}</td>
+                      <td>{{ candidate.blood_group }}</td>
+                      <td>{{ candidate.ph_no }}</td>
+                     <td>{{ candidate.address }}</td>
+                      <td><img src="{{ candidate.profile_pic }}" style="width:100px"/></td>
+
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}

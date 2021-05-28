@@ -1,0 +1,64 @@
+{% extends 'admin_template/base_template.html' %}
+{% block page_title %}
+Manage Voters
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Voter Details</h3>
+                  <a href="/add_voter" class="btn btn-primary float-right">Add Voter</a>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>Voter ID</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>User Name</th>
+                      <th>Email</th>
+                      <th>Gender</th>
+                      <th>Date Of Birth</th>
+                      <th>Blood Group</th>
+                      <th>Phone Number</th>
+                      <th>Address</th>
+                      <th>Profile Pic</th>
+
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for voter in voters %}
+                  <tr>
+                      <td>{{ voter.voter_number }}</td>
+                      <td>{{ voter.admin.first_name }}</td>
+                      <td>{{ voter.admin.last_name }}</td>
+                      <td>{{ voter.admin.username }}</td>
+                      <td>{{ voter.admin.email }}</td>
+                      <td>{{ voter.gender }}</td>
+                      <td>{{ voter.dob }}</td>
+                      <td>{{ voter.blood_group }}</td>
+                      <td>{{ voter.ph_no }}</td>
+                     <td>{{ voter.address }}</td>
+                      <td><img src="{{ voter.profile_pic }}" style="width:100px"/></td>
+
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}
