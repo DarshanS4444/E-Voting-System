@@ -149,18 +149,18 @@ def add_candidate_save(request):
         filename = fs.save(profile_pic.name, profile_pic)
         profile_pic_url = fs.url(filename)
 
-        try:
-            candidate = Candidates(username=username,profile_pic = profile_pic_url,
-                                                  email=email, last_name=last_name, first_name=first_name,address=address,gender=gender,candidate_number=candidate_number,dob=dob,blood_group=blood_group,ph_no=ph_no)
+
+        #try:
+        candidate = Candidates(username=username,profile_pic = profile_pic_url, email=email, last_name=last_name, first_name=first_name,address=address,gender=gender,candidate_number=candidate_number,dob=dob,blood_group=blood_group,ph_no=ph_no)
 
 
-            candidate.save()
+        candidate.save()
 
-            messages.success(request, "Successfully Added Candidate Details")
-            return HttpResponseRedirect(reverse("add_candidate"))
-        except:
-            messages.error(request, "Failed to Add Candidate Details")
-            return HttpResponseRedirect(reverse("add_candidate"))
+        messages.success(request, "Successfully Added Candidate Details")
+        return HttpResponseRedirect(reverse("add_candidate"))
+        #except:
+          #  messages.error(request, "Failed to Add Candidate Details")
+            #return HttpResponseRedirect(reverse("add_candidate"))
 
 def admin_profile(request):
     user = CustomUser.objects.get(id=request.user.id)

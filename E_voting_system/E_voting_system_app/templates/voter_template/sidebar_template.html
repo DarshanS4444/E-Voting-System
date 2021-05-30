@@ -32,7 +32,8 @@
 
         <li class="nav-item">
             {% url 'voting_panel' as voting_panel %}
-            <a href="{{ voting_panel }}" class="nav-link {% if request.path == voting_panel %} active {% endif %}">
+          {% url 'view_candidate' candidate_id=id as view_candidate %}
+            <a href="{{ voting_panel }}" class="nav-link {% if request.path == voting_panel %} active {% endif %} {% if request.path == view_candidate %} active {% endif %}">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Voting Panel

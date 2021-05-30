@@ -1,0 +1,80 @@
+{% extends 'voter_template/base_template.html' %}
+{% block page_title %}
+Vote Cast | #ID : {{ candidate.id }}
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">About Me</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" action="{% url 'view_candidate_save' %}" method="post">
+                  {% csrf_token %}
+                <div class="card-body">
+                  <section id="voter-detail-section header">
+              <div id="voter-detail-section--inner">
+                <div class="container">
+
+                  <div class="row py-5">
+                    <div class="col-3">
+                      <img class="candidate-profile-img" src="{{ candidate.profile_pic }}" alt="" width="200" height="200">
+                    </div>
+                    <div class="col-8">
+                        <input type="hidden" name="candidate_id" value="{{ candidate.id }}">
+                        <h4>Name : {{ candidate.first_name }} {{ candidate.last_name }}</h4>
+                        <h4>Candidate ID : {{ candidate.candidate_number }}</h4>
+                        <h4>Username : {{ candidate.username }}</h4>
+                        <h4>Date Of Birth : {{ candidate.dob | date:'d-m-Y' }}</h4>
+                        <h4>Gender : {{ candidate.gender }}</h4>
+                        <h4>Blood Group : {{ candidate.blood_group }}</h4>
+                        <h4>Email ID : {{ candidate.email }}</h4>
+                        <h4>Contact Number : {{ candidate.ph_no }}</h4>
+                        <h4>Address : {{ candidate.address }}</h4>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <div class="form-group">
+
+                <input type="checkbox" id="voter_status" name="voter_status" value="Yes">
+                <label for="voter_status"> I agree </label><br>
+                <button type="submit" class="btn btn-primary">Submit Vote</button>
+            </div>
+
+                   <div class="form-group">
+                      {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                        <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% if message.tags == 'success' %}
+                        <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+              </form>
+            </div>
+            <!-- /.card -->
+
+
+
+          </div>
+          </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}
