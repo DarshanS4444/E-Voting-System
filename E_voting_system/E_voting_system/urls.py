@@ -49,4 +49,6 @@ urlpatterns = [
     path('voter_profile_save', VoterViews.voter_profile_save, name="voter_profile_save"),
     path('admin_profile', AdminViews.admin_profile, name="admin_profile"),
     path('admin_profile_save', AdminViews.admin_profile_save, name="admin_profile_save"),
+    path('view_candidate/<str:candidate_id>', VoterViews.view_candidate, name="view_candidate"),
+    path('view_candidate_save', VoterViews.view_candidate_save, name="view_candidate_save"),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

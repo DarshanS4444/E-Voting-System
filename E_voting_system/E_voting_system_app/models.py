@@ -3,7 +3,6 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-
 # Create your models here.
 '''class SessionYearModel(models.Model):
     id = models.AutoField(primary_key=True)
@@ -24,6 +23,7 @@ class Admin(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
 
+
 '''
 class Parents(models.Model):
     id = models.AutoField(primary_key=True)
@@ -38,6 +38,7 @@ class Parents(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
 '''
+
 
 class Committees(models.Model):
     id = models.AutoField(primary_key=True)
@@ -56,8 +57,6 @@ class Committees(models.Model):
     objects = models.Manager()
 
 
-
-
 '''
 class Subjects(models.Model):
     id = models.AutoField(primary_key=True)
@@ -68,6 +67,8 @@ class Subjects(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
 '''
+
+
 class Voters(models.Model):
     id = models.AutoField(primary_key=True)
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
@@ -79,8 +80,7 @@ class Voters(models.Model):
     dob = models.DateField()
     fcm_token = models.TextField(default="")
     address = models.TextField()
-
-
+    voter_status = models.TextField(default="No")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
@@ -100,6 +100,7 @@ class Candidates(models.Model):
     fcm_token = models.TextField(default="")
     address = models.TextField()
     email = models.CharField(max_length=255)
+    vote = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
@@ -112,13 +113,13 @@ def create_user_profile(sender, instance, created, **kwargs):
             Admin.objects.create(admin=instance)
         if instance.user_type == 2:
             Committees.objects.create(admin=instance, address="", profile_pic="", gender="", ph_no="",
-                                  dob="2000-01-01", qualification="", blood_group="", committee_number="")
+                                      dob="2000-01-01", qualification="", blood_group="", committee_number="")
 
         if instance.user_type == 3:
             Voters.objects.create(admin=instance,
-                                    address="", profile_pic="",
-                                    gender="", ph_no="", dob="2000-01-01", blood_group="", voter_number="")
-
+                                  address="", profile_pic="",
+                                  gender="", ph_no="", dob="2000-01-01", blood_group="", voter_number="",
+                                  voter_status="No")
 
 
 @receiver(post_save, sender=CustomUser)
@@ -129,4 +130,3 @@ def save_user_profile(sender, instance, **kwargs):
         instance.committees.save()
     if instance.user_type == 3:
         instance.voters.save()
-
