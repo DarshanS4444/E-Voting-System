@@ -62,7 +62,6 @@ def view_candidate_save(request):
                 # user.save()
                 voter_model = Voters.objects.get(id=voter_set.id)
                 voter_model.voter_status = voter_status
-
                 voter_model.save()
                 messages.success(request, "Successfully Voted")
                 return HttpResponseRedirect(reverse("view_candidate", kwargs={"candidate_id": candidate_id}))
