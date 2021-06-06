@@ -1,5 +1,7 @@
 import datetime
-
+import math
+#import sympy
+from random import randint
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -56,12 +58,65 @@ def view_candidate_save(request):
         voter_status = request.POST.get("voter_status")
         voter_set = Voters.objects.get(admin_id=request.user.id)
         voter_model_new = Voters.objects.get(id=voter_set.id)
+        candidate_model = Candidates.objects.get(id=candidate_id)
+        candidate_message = candidate_model.message
+        def lf(x, n):
+            return ((x - 1) // n)
+
+        def enc(g, m, n):
+            r = randint(1, n)
+            while math.gcd(r, n) != 1:
+                r = randint(1, n)
+            n2 = n * n
+            return ((g ** m) * (r ** n)) % n2
+
+        def mod_Inv(x, y):
+            for i in range(y):
+                if (x * i) % y == 1:
+                    return i
+            return -1
+
+        def MuWithoutInverse(lam, n2):
+            g = randint(1, n2)
+            z = pow(g, lam, n2)
+            l = lf(z, n)
+            ln = mod_Inv(l, n)
+            return ln, g
+
+        p = 7 #sympy.randprime(100, 500)
+        q = 11 #sympy.randprime(100, 500)
+
+        while math.gcd((p * q), ((p - 1) * (q - 1))) != 1 or p == q:
+             p = 7#sympy.randprime(100, 500)
+             q = 11 #sympy.randprime(100, 500)
+        else:
+            p = p
+            q = q
+
+        n = p * q
+        n2 = pow(n, 2)
+
+        lam = math.lcm((p - 1), (q - 1))
+
+        ln, g = MuWithoutInverse(lam, n2)
+
+        while ln == -1:
+            ln, g = MuWithoutInverse(lam, n2)
+
+        Mu = ln % n
+
+        m = int(candidate_message)
+        #    print(f"Plaintext message, m = {m}")
+
+        c = enc(g, m, n)
+        c = c % n2
         if voter_model_new.voter_status == "No":
             try:
                 # user = CustomUser.objects.get(id=request.user.id)
                 # user.save()
                 voter_model = Voters.objects.get(id=voter_set.id)
                 voter_model.voter_status = voter_status
+                voter_model.cipher_text = c
                 voter_model.save()
                 messages.success(request, "Successfully Voted")
                 return HttpResponseRedirect(reverse("view_candidate", kwargs={"candidate_id": candidate_id}))

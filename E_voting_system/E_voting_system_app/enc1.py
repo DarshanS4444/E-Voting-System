@@ -1,5 +1,5 @@
 import math
-import sympy
+#import sympy
 from random import randint
 
 def lf(x, n):
@@ -31,12 +31,12 @@ def MuWithoutInverse(lam, n2):
 
 if __name__ == '__main__':
 
-    p = sympy.randprime(100, 500)
-    q = sympy.randprime(100, 500)
+    p = 7 #sympy.randprime(100, 500)
+    q = 11 #sympy.randprime(100, 500)
 
     while math.gcd((p * q), ((p - 1) * (q - 1))) != 1 or p == q:
-        p = sympy.randprime(100, 500)
-        q = sympy.randprime(100, 500)
+        p = 7 #sympy.randprime(100, 500)
+        q = 11 #sympy.randprime(100, 500)
     else:
         p = p
         q = q
@@ -52,9 +52,8 @@ if __name__ == '__main__':
         ln, g = MuWithoutInverse(lam, n2)
 
     Mu = ln % n
-
-    m = 23
-#    print(f"Plaintext message, m = {m}")
-
+    m = 42
+    print(f"Plaintext message, m = {m}")
     c = enc(g, m, n)
-    c = c % n
+    c = c % n2
+    print("cipher text ",c)

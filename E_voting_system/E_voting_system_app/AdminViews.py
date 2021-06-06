@@ -141,6 +141,7 @@ def add_candidate_save(request):
         email = request.POST.get("email")
         address = request.POST.get("address")
         candidate_number = request.POST.get("candidate_number")
+        message = request.POST.get("message")
         gender = request.POST.get("gender")
         ph_no = request.POST.get("ph_no")
         dob = request.POST.get("dob")
@@ -151,7 +152,7 @@ def add_candidate_save(request):
 
 
         #try:
-        candidate = Candidates(username=username,profile_pic = profile_pic_url, email=email, last_name=last_name, first_name=first_name,address=address,gender=gender,candidate_number=candidate_number,dob=dob,blood_group=blood_group,ph_no=ph_no)
+        candidate = Candidates(username=username,profile_pic = profile_pic_url, email=email, last_name=last_name, first_name=first_name,address=address,gender=gender,candidate_number=candidate_number,dob=dob,blood_group=blood_group,ph_no=ph_no,message=message)
 
 
         candidate.save()

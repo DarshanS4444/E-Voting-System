@@ -81,6 +81,7 @@ class Voters(models.Model):
     fcm_token = models.TextField(default="")
     address = models.TextField()
     voter_status = models.TextField(default="No")
+    cipher_text = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
@@ -101,6 +102,7 @@ class Candidates(models.Model):
     address = models.TextField()
     email = models.CharField(max_length=255)
     vote = models.CharField(max_length=255)
+    message = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
@@ -119,7 +121,7 @@ def create_user_profile(sender, instance, created, **kwargs):
             Voters.objects.create(admin=instance,
                                   address="", profile_pic="",
                                   gender="", ph_no="", dob="2000-01-01", blood_group="", voter_number="",
-                                  voter_status="No")
+                                  voter_status="No", cipher_text="")
 
 
 @receiver(post_save, sender=CustomUser)
