@@ -59,5 +59,5 @@ def committee_profile_save(request):
 
 
 def results(request):
-    #candidates = Candidates.objects.all()
-    return render(request, "committee_template/results.html")
+    candidates = Candidates.objects.all()
+    return render(request, "committee_template/results.html", {"candidates": candidates})

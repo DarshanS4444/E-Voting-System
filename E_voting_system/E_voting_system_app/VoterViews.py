@@ -77,18 +77,18 @@ def view_candidate_save(request):
             return -1
 
         def MuWithoutInverse(lam, n2):
-            g = randint(1, n2)
+            g = 296446#randint(1, n2)
             z = pow(g, lam, n2)
             l = lf(z, n)
             ln = mod_Inv(l, n)
             return ln, g
 
-        p = 7 #sympy.randprime(100, 500)
-        q = 11 #sympy.randprime(100, 500)
+        p = 29 #sympy.randprime(100, 500)
+        q = 23 #sympy.randprime(100, 500)
 
         while math.gcd((p * q), ((p - 1) * (q - 1))) != 1 or p == q:
-             p = 7#sympy.randprime(100, 500)
-             q = 11 #sympy.randprime(100, 500)
+             p = 29#sympy.randprime(100, 500)
+             q = 23 #sympy.randprime(100, 500)
         else:
             p = p
             q = q
@@ -106,18 +106,17 @@ def view_candidate_save(request):
         Mu = ln % n
 
         m = int(candidate_message)
-        #    print(f"Plaintext message, m = {m}")
-
         c = enc(g, m, n)
         c = c % n2
         if voter_model_new.voter_status == "No":
             try:
-                # user = CustomUser.objects.get(id=request.user.id)
-                # user.save()
                 voter_model = Voters.objects.get(id=voter_set.id)
                 voter_model.voter_status = voter_status
+                candidate_model = Candidates.objects.get(id=candidate_id)
+                candidate_model.ciphertext_candidates = int(candidate_model.ciphertext_candidates) * c
                 voter_model.cipher_text = c
                 voter_model.save()
+                candidate_model.save()
                 messages.success(request, "Successfully Voted")
                 return HttpResponseRedirect(reverse("view_candidate", kwargs={"candidate_id": candidate_id}))
             except:
