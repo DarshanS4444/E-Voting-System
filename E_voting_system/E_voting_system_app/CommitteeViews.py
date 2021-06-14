@@ -14,7 +14,6 @@ from E_voting_system_app.models import Voters, Committees, CustomUser, Candidate
 
 
 def committee_home(request):
-
     return render(request, "committee_template/committee_main_content.html")
 
 
@@ -28,33 +27,37 @@ def committee_profile_save(request):
     if request.method != "POST":
         return HttpResponseRedirect(reverse("committee_profile"))
     else:
-        
+
         first_name = request.POST.get("first_name")
         last_name = request.POST.get("last_name")
-        address = request.POST.get("address")   
+        address = request.POST.get("address")
         ph_no = request.POST.get("ph_no")
         gender = request.POST.get("gender")
-    
+
         password = request.POST.get("password")
         try:
             customuser = CustomUser.objects.get(id=request.user.id)
-            
+
             customuser.first_name = first_name
             customuser.last_name = last_name
-        
+
             if password != None and password != "":
                 customuser.set_password(password)
             customuser.save()
-            
+
             committee = Committees.objects.get(admin=customuser.id)
             committee.address = address
             committee.gender = gender
             committee.ph_no = ph_no
             committee.save()
-            
+
             messages.success(request, "Successfully Updated Password")
             return HttpResponseRedirect(reverse("committee_profile"))
         except:
             messages.error(request, "Failed to Update Password")
             return HttpResponseRedirect(reverse("committee_profile"))
 
+
+def results(request):
+    candidates = Candidates.objects.all()
+    return render(request, "committee_template/results.html", {"candidates": candidates})

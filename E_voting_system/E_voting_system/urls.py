@@ -43,6 +43,7 @@ urlpatterns = [
     path('committee_home', CommitteeViews.committee_home, name="committee_home"),
     path('committee_profile', CommitteeViews.committee_profile, name="committee_profile"),
     path('committee_profile_save', CommitteeViews.committee_profile_save, name="committee_profile_save"),
+    path('results', CommitteeViews.results, name="results"),
     path('voter_home', VoterViews.voter_home, name="voter_home"),
     path('voting_panel', VoterViews.voting_panel, name="voting_panel"),
     path('voter_profile', VoterViews.voter_profile, name="voter_profile"),

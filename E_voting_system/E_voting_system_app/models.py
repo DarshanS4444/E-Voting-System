@@ -103,6 +103,7 @@ class Candidates(models.Model):
     email = models.CharField(max_length=255)
     vote = models.CharField(max_length=255)
     message = models.CharField(max_length=255)
+    ciphertext_candidates = models.TextField(default="1")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()

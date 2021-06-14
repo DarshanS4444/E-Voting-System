@@ -5,6 +5,11 @@ from random import randint
 def lf(x, n):
     return ((x - 1) // n)
 
+def dec(c, lam, Mu, n):
+    n2 = n * n
+    z = lf(pow(c, lam, (n2)), n)
+    return ((z * Mu) % n)
+
 
 def enc(g, m, n):
     r = randint(1, n)
@@ -22,7 +27,7 @@ def mod_Inv(x, y):
 
 
 def MuWithoutInverse(lam, n2):
-    g = randint(1, n2)
+    g = 296446#randint(1, n2)
     z = pow(g, lam, n2)
     l = lf(z, n)
     ln = mod_Inv(l, n)
@@ -31,12 +36,12 @@ def MuWithoutInverse(lam, n2):
 
 if __name__ == '__main__':
 
-    p = 7 #sympy.randprime(100, 500)
-    q = 11 #sympy.randprime(100, 500)
+    p = 29 #sympy.randprime(100, 500)
+    q = 23 #sympy.randprime(100, 500)
 
     while math.gcd((p * q), ((p - 1) * (q - 1))) != 1 or p == q:
-        p = 7 #sympy.randprime(100, 500)
-        q = 11 #sympy.randprime(100, 500)
+        p = 29 #sympy.randprime(100, 500)
+        q = 23 #sympy.randprime(100, 500)
     else:
         p = p
         q = q
@@ -56,4 +61,9 @@ if __name__ == '__main__':
     print(f"Plaintext message, m = {m}")
     c = enc(g, m, n)
     c = c % n2
+    s = dec(c, lam, Mu, n)
+    print(f"sum of messages = {s}")
     print("cipher text ",c)
+    print("G =", g)
+    print("Mu =", Mu)
+    print("lam =", lam)

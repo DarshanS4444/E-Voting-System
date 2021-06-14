@@ -30,6 +30,16 @@
             </a>
           </li>
 
+          <li class="nav-item">
+            {% url 'results' as results %}
+         <!-- {% url 'view_candidate' candidate_id=id as view_candidate %}-->
+            <a href="{{ results }}" class="nav-link {% if request.path == results %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Results
+              </p>
+            </a>
+          </li>
 
 
 
