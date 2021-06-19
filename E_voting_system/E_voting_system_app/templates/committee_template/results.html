@@ -19,7 +19,7 @@ Results
                     <tr>
                       <th>Candidate ID</th>
                       <th>Profile Pic</th>
-                      <th>Vote Count</th>
+
                     </tr>
                   </thead>
                   <tbody>
@@ -28,7 +28,8 @@ Results
                     <input type="hidden" name="candidate_id" value="{{ candidate_id }}">
                       <td>{{ candidate.candidate_number }}</td>
                       <td><img src="{{ candidate.profile_pic }}" style="width:100px"/></td>
-                       <td></td>
+                       <td><a href="/candidate_result/{{ candidate.id }}" class="btn btn-success">Details</a></td>
+
                     </tr>
                   {% endfor %}
                   </tbody>

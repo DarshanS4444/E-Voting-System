@@ -104,6 +104,7 @@ class Candidates(models.Model):
     vote = models.CharField(max_length=255)
     message = models.CharField(max_length=255)
     ciphertext_candidates = models.TextField(default="1")
+    vote_count = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
