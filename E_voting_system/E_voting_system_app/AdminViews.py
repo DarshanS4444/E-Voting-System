@@ -18,13 +18,19 @@ def admin_home(request):
     voter_count1 =  Voters.objects.all().count()
     committee_count = Committees.objects.all().count()
     candidate_count = Candidates.objects.all().count()
-
+    male_count = Voters.objects.filter(gender='Male').count()
+    female_count = Voters.objects.filter(gender='Female').count()
+    others_count = Voters.objects.filter(gender='Other').count()
+    candidate_male_count = Candidates.objects.filter(gender='Male').count()
+    candidate_female_count = Candidates.objects.filter(gender='Female').count()
+    candidate_others_count = Candidates.objects.filter(gender='Other').count()
 
 
 
     return render(request, "admin_template/main_content.html",
                   {"voter_count": voter_count1, "committee_count": committee_count,
-                   "candidate_count": candidate_count
+                   "candidate_count": candidate_count, "male_count": male_count, "female_count": female_count, "others_count": others_count,
+                   "candidate_male_count": candidate_male_count, "candidate_female_count": candidate_female_count, "candidate_others_count": candidate_others_count
                   })
 
 
@@ -151,17 +157,18 @@ def add_candidate_save(request):
         profile_pic_url = fs.url(filename)
 
 
-        #try:
-        candidate = Candidates(username=username,profile_pic = profile_pic_url, email=email, last_name=last_name, first_name=first_name,address=address,gender=gender,candidate_number=candidate_number,dob=dob,blood_group=blood_group,ph_no=ph_no,message=message)
+        try:
+            candidate = Candidates(username=username,profile_pic = profile_pic_url, email=email, last_name=last_name, first_name=first_name,address=address,gender=gender,candidate_number=candidate_number,dob=dob,blood_group=blood_group,ph_no=ph_no,message=message)
 
 
-        candidate.save()
+            candidate.save()
 
-        messages.success(request, "Successfully Added Candidate Details")
-        return HttpResponseRedirect(reverse("add_candidate"))
-        #except:
-          #  messages.error(request, "Failed to Add Candidate Details")
-            #return HttpResponseRedirect(reverse("add_candidate"))
+            messages.success(request, "Successfully Added Candidate Details")
+            return HttpResponseRedirect(reverse("add_candidate"))
+        except:
+            messages.error(request, "Failed to Add Candidate Details")
+            return HttpResponseRedirect(reverse("add_candidate"))
+
 
 def admin_profile(request):
     user = CustomUser.objects.get(id=request.user.id)
@@ -202,7 +209,17 @@ def manage_voter(request):
 
     return render(request, "admin_template/manage_voter_template.html", {"voters": voters})
 
+def delete_voter(request, voter_id):
+    user = CustomUser.objects.get(id=voter_id)
+    user.delete()
+    return HttpResponseRedirect(reverse("manage_voter"))
 
+def delete_committee(request, committee_id):
+    user = CustomUser.objects.get(id=committee_id)
+    user.delete()
+    return HttpResponseRedirect(reverse("manage_committee"))
 
-
-
+def delete_candidate(request, candidate_id):
+    user = Candidates.objects.get(id=candidate_id)
+    user.delete()
+    return HttpResponseRedirect(reverse("manage_committee"))

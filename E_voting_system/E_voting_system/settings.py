@@ -135,14 +135,14 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = "E_voting_system_app.CustomUser"
 AUTHENTICATION_BACKENDS = ['E_voting_system_app.EmailBackEnd.EmailBackEnd']
 
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_mails")
+#EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+#EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_mails")
 
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'a71518810@gmail.com'
-EMAIL_HOST_PASSWORD = 'duplicate123DUP@'
+EMAIL_HOST_USER = 'vegadas91@gmail.com'
+EMAIL_HOST_PASSWORD = 'vegadas@123'
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'E-Voting System <a71518810@gmail.com>'
+DEFAULT_FROM_EMAIL = 'E-Voting System <vegadas91@gmail.com>'
 
