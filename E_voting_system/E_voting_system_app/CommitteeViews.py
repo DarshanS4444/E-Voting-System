@@ -39,18 +39,11 @@ def committee_profile_save(request):
         try:
             customuser = CustomUser.objects.get(id=request.user.id)
 
-            customuser.first_name = first_name
-            customuser.last_name = last_name
+
 
             if password != None and password != "":
                 customuser.set_password(password)
             customuser.save()
-
-            committee = Committees.objects.get(admin=customuser.id)
-            committee.address = address
-            committee.gender = gender
-            committee.ph_no = ph_no
-            committee.save()
 
             messages.success(request, "Successfully Updated Password")
             return HttpResponseRedirect(reverse("committee_profile"))

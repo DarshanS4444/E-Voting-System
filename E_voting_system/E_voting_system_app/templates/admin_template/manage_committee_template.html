@@ -31,6 +31,7 @@ Manage Committee Members
                       <th>Profile Picture</th>
                       <th>Phone Number</th>
                       <th>Address</th>
+                      <th>Action</th>
 
 
                     </tr>
@@ -50,6 +51,7 @@ Manage Committee Members
                       <td><img src="{{ committee.profile_pic }}" style="width:100px;"/></td>
                       <td>{{ committee.ph_no }}</td>
                       <td>{{ committee.address }}</td>
+                        <td><a href="/delete_committee/{{ committee.admin.id }}" class="btn btn-danger">Delete</a></td>
 
                     </tr>
                   {% endfor %}

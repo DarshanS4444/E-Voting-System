@@ -1,13 +1,37 @@
 {% extends 'committee_template/base_template.html' %}
+{% load static %}
 {% block page_title %}
 Home
 {% endblock page_title %}
 {% block main_content %}
     <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
+    <head>
+<style>
+img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+}
+</style>
+</head>
+      <section class="content" style="background-image: url({% static 'bg4.jpg' %}); background-repeat: no-repeat; height: 110vh; background-size: 100%;" >
+      <div class="container">
+    <div class="row">
+    <div class="col-sm-8" style="color:rgb(247, 246, 237);">
+
+      <h2>TYPE CONTENT HERE</h2>
+      <p>,<br> </p>
+
+
+    </div>
+    <div class="col-sm-4" style="color:rgb(58, 22, 22);">
+      <img src="static/icon1.png" width="150px" alt=" ">
+
+    </div>
 
       </div>
-    </section>
+      </section>
     <!-- /.content -->
+      </html>
 {% endblock main_content %}

@@ -29,6 +29,7 @@ Manage Candidates
                       <th>Phone Number</th>
                       <th>Address</th>
                       <th>Profile Pic</th>
+                        <th>Action</th>
 
 
                     </tr>
@@ -47,6 +48,7 @@ Manage Candidates
                       <td>{{ candidate.ph_no }}</td>
                      <td>{{ candidate.address }}</td>
                       <td><img src="{{ candidate.profile_pic }}" style="width:100px"/></td>
+                      <td><a href="/delete_candidate/{{ candidate.id }}" class="btn btn-danger">Delete</a></td>
 
                     </tr>
                   {% endfor %}

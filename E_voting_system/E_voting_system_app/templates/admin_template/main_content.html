@@ -55,6 +55,34 @@ Home
           </div>
       </div>
 
+        <div class="row">
+              <div class="col-lg-6">
+                <div class="card card-danger">
+                  <div class="card-header">
+                    <h3 class="card-title">Voters Chart</h3>
+                  </div>
+                  <div class="card-body">
+                    <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+              </div>
+
+
+
+              <div class="col-lg-6">
+                <div class="card card-success">
+                  <div class="card-header">
+                    <h3 class="card-title">Candidates Chart</h3>
+                  </div>
+                  <div class="card-body">
+                    <canvas id="pieChart1" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+              </div>
+
+        </div>
 
 
 
@@ -62,3 +90,62 @@ Home
     </section>
     <!-- /.content -->
 {% endblock main_content %}
+{% block custom_js %}
+<script>
+    $(document).ready(function(){
+
+            var pieData        = {
+                  labels: [
+                      'Male',
+                      'Female',
+                      'Other'
+                  ],
+                  datasets: [
+                    {
+                      data: [{{ male_count }},{{ female_count }},{{ others_count }}],
+                      backgroundColor : ['#f56954', '#00a65a', '#fcba03'],
+                    }
+                  ]
+             };
+
+            var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+            var pieOptions     = {
+              maintainAspectRatio : false,
+              responsive : true,
+            }
+            //Create pie or douhnut chart
+            // You can switch between pie and douhnut using the method below.
+            var pieChart = new Chart(pieChartCanvas, {
+              type: 'pie',
+              data: pieData,
+              options: pieOptions
+            });
+             var pieData1        = {
+                  labels: [
+                      'Male',
+                      'Female',
+                      'Other'
+                  ],
+                  datasets: [
+                    {
+                      data: [{{ candidate_male_count }},{{ candidate_female_count }},{{ candidate_others_count }}],
+                      backgroundColor : ['#f56954', '#00a65a', '#fcba03'],
+                    }
+                  ]
+             };
+
+            var pieChartCanvas1 = $('#pieChart1').get(0).getContext('2d')
+            var pieOptions1     = {
+              maintainAspectRatio : false,
+              responsive : true,
+            }
+            //Create pie or douhnut chart
+            // You can switch between pie and douhnut using the method below.
+            var pieChart1 = new Chart(pieChartCanvas1, {
+              type: 'pie',
+              data: pieData1,
+              options: pieOptions1
+            });
+    });
+</script>
+{% endblock custom_js %}

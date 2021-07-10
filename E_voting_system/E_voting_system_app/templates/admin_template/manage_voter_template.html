@@ -29,6 +29,7 @@ Manage Voters
                       <th>Phone Number</th>
                       <th>Address</th>
                       <th>Profile Pic</th>
+                        <th>Action</th>
 
 
                     </tr>
@@ -47,6 +48,7 @@ Manage Voters
                       <td>{{ voter.ph_no }}</td>
                      <td>{{ voter.address }}</td>
                       <td><img src="{{ voter.profile_pic }}" style="width:100px"/></td>
+                       <td><a href="/delete_voter/{{ voter.admin.id }}" class="btn btn-danger">Delete</a></td>
 
                     </tr>
                   {% endfor %}
