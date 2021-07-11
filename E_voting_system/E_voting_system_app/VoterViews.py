@@ -108,6 +108,7 @@ def view_candidate_save(request):
         m = int(candidate_message)
         c = enc(g, m, n)
         c = c % n2
+        print("this is the cipher text", c)
         if voter_model_new.voter_status == "No":
             try:
                 voter_model = Voters.objects.get(id=voter_set.id)

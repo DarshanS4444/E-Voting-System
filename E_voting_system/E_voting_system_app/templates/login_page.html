@@ -19,20 +19,22 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+<section class="content" style="background-image: url({% static 'login_bg.jpg' %}); background-size: cover;  background-repeat: no-repeat; height: 750px; width: 1500px;" >
+
 <body class="hold-transition login-page">
-<div class="login-box">
+<div class="login-box" style="margin: auto; margin-top: 25vh;">
   <div class="login-logo">
-    <h1>Voting System</h1>
+    <h1 style="color: #fcfcfa" >E-Voting System</h1>
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in</p>
 
-      <form action="/doLogin" method="post">
+      <form action="doLogin" method="post">
           {% csrf_token %}
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email" name="email" autocomplete="off">
+          <input type="email" class="form-control" placeholder="Email" name="email" autocomplete="off" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -40,7 +42,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password" name="password">
+          <input type="password" class="form-control" placeholder="Password" name="password" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -60,8 +62,8 @@
 
           <div class="col-12">
             <br>
+
             <a href="{% url 'password_reset' %}">Forgot Password?</a>
-            <!--<a href="" class="float-right">Parent?</a>-->
           </div>
         </div>
 
@@ -83,6 +85,7 @@
     <!-- /.login-card-body -->
   </div>
 </div>
+
 <!-- /.login-box -->
 
 <!-- jQuery -->
@@ -93,4 +96,5 @@
 <script src="{% static 'dist/js/adminlte.min.js' %}"></script>
 
 </body>
+</section>
 </html>
