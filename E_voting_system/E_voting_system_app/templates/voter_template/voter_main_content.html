@@ -1,16 +1,39 @@
 {% extends 'voter_template/base_template.html' %}
+{% load static %}
 {% block page_title %}
 Home
 {% endblock page_title %}
 {% block main_content %}
     <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
+<head xmlns="http://www.w3.org/1999/html">
+<style>
+img {
 
+  padding: 5px;
 
+}
+</style>
+</head>
+      <section class="content" style="background-image: url({% static 'bg9.jpg' %}); background-repeat: no-repeat; height: 90vh; background-size: 100%;" >
+      <div class="container">
+    <div class="row">
+    <div  style="color:#e6e6dc;">
+        <img src="static/v2.jpg"  align="right" width="200" height="180">
+       <h1>General Instruction For E voting </h1>
+<p>
+    <ul style="font-size:140%">
+        <li>Initially after logging in change your password immediately to ensure privacy and confidentiality. <br> <img src="static/v1.jpg"  width="180" height="70"></li>
+        <li>On the day of voting, must login and to go to voting panel select your desired Candidate , vote for him/her</li>
+        <li>Remember Once Vote is casted, the voter is not allowed to vote one again. Access will be denied</li>
+        <li>Individual voters are requested to follow the guidelines.We hope voters don not violate any rules and practise voting rights honestly.</li>
+         <img src="static/v4.jpg"  class="center" width="200" height="180">
+       </ul>
+        </p>
 
-          <!-- ./col -->
+    </div>
+
       </div>
-    </section>
+      </section>
     <!-- /.content -->
+      </html>
 {% endblock main_content %}

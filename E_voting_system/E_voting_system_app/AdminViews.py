@@ -222,4 +222,4 @@ def delete_committee(request, committee_id):
 def delete_candidate(request, candidate_id):
     user = Candidates.objects.get(id=candidate_id)
     user.delete()
-    return HttpResponseRedirect(reverse("manage_committee"))
+    return HttpResponseRedirect(reverse("manage_candidate"))
